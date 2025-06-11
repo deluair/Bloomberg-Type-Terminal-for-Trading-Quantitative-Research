@@ -29,6 +29,30 @@ A comprehensive, professional-grade financial terminal built with Python and Das
 - **Correlation Analysis**: Asset correlation heatmaps and sector exposure
 - **Risk Alerts**: Automated warnings for threshold breaches
 
+### 🤖 Algorithmic Trading Strategies
+- **Strategy Monitoring**: Real-time performance tracking for 5+ algorithmic strategies
+- **ML-Powered Trading**: Sentiment analysis, momentum detection, statistical arbitrage
+- **Risk Management**: Automated position sizing, stop-losses, portfolio optimization
+- **Performance Analytics**: Win rates, Sharpe ratios, drawdown analysis, equity curves
+
+### 📈 Options Analytics & Greeks
+- **Implied Volatility Surface**: 3D visualization across strikes and expirations
+- **Real-time Greeks**: Delta, Gamma, Theta, Vega, Rho calculations with portfolio aggregation
+- **Strategy P&L**: Interactive payoff diagrams for covered calls, straddles, iron condors
+- **Risk Scenarios**: Stress testing with price, volatility, and time decay analysis
+
+### 🔬 Quantitative Research Platform
+- **Advanced Backtesting**: Factor-based strategy testing (Momentum, Value, Quality, Low Vol)
+- **Monte Carlo Simulation**: 1000+ path simulations for risk assessment and forecasting
+- **Factor Exposure Analysis**: Multi-dimensional factor decomposition and attribution
+- **Performance Attribution**: Sector allocation vs. security selection effect analysis
+
+### 🌱 ESG & Alternative Data Intelligence
+- **ESG Scoring**: Environmental, Social, Governance ratings for 10+ major companies
+- **Alternative Data Sources**: Satellite imagery, social sentiment, supply chain analytics
+- **Sustainability Metrics**: Carbon footprint tracking and renewable energy adoption
+- **ESG Investment Performance**: Comparison of ESG vs. traditional portfolio strategies
+
 ### 📈 Advanced Charting & Technical Analysis
 - **Professional Candlestick Charts**: OHLCV data with technical indicators
 - **Technical Indicators**: SMA 20/50, Bollinger Bands, RSI

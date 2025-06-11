@@ -10,6 +10,10 @@ from .components.risk_management import get_layout as risk_layout
 from .components.trade_blotter import get_layout as trade_blotter_layout
 from .components.news_feed import get_layout as news_feed_layout
 from .components.advanced_charts import get_layout as advanced_charts_layout
+from .components.options_analytics import get_layout as options_layout
+from .components.algo_trading import get_layout as algo_trading_layout
+from .components.esg_alt_data import get_layout as esg_layout
+from .components.quant_research import get_layout as quant_layout
 from .components.navbar import get_navbar
 
 # Enhanced layout with comprehensive Bloomberg-style components
@@ -53,7 +57,39 @@ main_layout = html.Div([
             ])
         ]),
         
-                # Row 5: News Feed and Market Intelligence (full width)
+                # Row 5: Options Analytics (full width)
+        html.Div([
+            html.A(id="options"),
+            dbc.Row([
+                dbc.Col(options_layout(), width=12, className="mt-4")
+            ])
+        ]),
+        
+        # Row 6: Algorithmic Trading (full width)
+        html.Div([
+            html.A(id="algo-trading"),
+            dbc.Row([
+                dbc.Col(algo_trading_layout(), width=12, className="mt-4")
+            ])
+        ]),
+        
+        # Row 7: ESG & Alternative Data (full width)
+        html.Div([
+            html.A(id="esg"),
+            dbc.Row([
+                dbc.Col(esg_layout(), width=12, className="mt-4")
+            ])
+        ]),
+        
+        # Row 8: Quantitative Research (full width)
+        html.Div([
+            html.A(id="quant"),
+            dbc.Row([
+                dbc.Col(quant_layout(), width=12, className="mt-4")
+            ])
+        ]),
+        
+        # Row 9: News Feed and Market Intelligence (full width)
         html.Div([
             html.A(id="news"),
             dbc.Row([

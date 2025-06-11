@@ -297,4 +297,158 @@ def update_market_data_store(n):
 
 
 
+# Advanced component callbacks
+
+@app.callback(
+    Output("options-content", "children"),
+    [Input("options-tabs", "active_tab")]
+)
+def update_options_content(active_tab):
+    """Update options analytics content based on selected tab."""
+    from .components.options_analytics import create_iv_surface, create_greeks_dashboard, create_options_strategy_payoff
+    from dash import dcc
+    
+    if active_tab == "iv-surface":
+        return dcc.Graph(
+            figure=create_iv_surface("AAPL"),
+            config={'displayModeBar': True}
+        )
+    elif active_tab == "greeks-timeline":
+        return dcc.Graph(
+            figure=create_greeks_dashboard(),
+            config={'displayModeBar': True}
+        )
+    elif active_tab == "strategy-payoff":
+        return html.Div([
+            html.Div(id="strategy-controls", style={'display': 'block'}),
+            dcc.Graph(
+                figure=create_options_strategy_payoff("covered_call"),
+                config={'displayModeBar': True}
+            )
+        ])
+    elif active_tab == "options-chain":
+        from .components.options_analytics import generate_options_chain
+        from dash import dash_table
+        options_df, _ = generate_options_chain("AAPL")
+        return dash_table.DataTable(
+            data=options_df.to_dict('records'),
+            columns=[{"name": i, "id": i} for i in options_df.columns if not i.startswith('Raw_')],
+            style_cell={'backgroundColor': 'rgba(0,0,0,0.3)', 'color': 'white', 'textAlign': 'center'},
+            style_header={'backgroundColor': 'rgba(0,0,0,0.5)', 'fontWeight': 'bold'},
+            sort_action="native",
+            filter_action="native",
+            page_size=15
+        )
+    
+    return html.Div("Select a tab to view options analytics")
+
+
+@app.callback(
+    Output("algo-content", "children"),
+    [Input("algo-tabs", "active_tab")]
+)
+def update_algo_content(active_tab):
+    """Update algorithmic trading content based on selected tab."""
+    from .components.algo_trading import (create_strategy_overview_chart, create_equity_curves_chart, 
+                                        create_real_time_trades_chart, create_risk_metrics_heatmap, 
+                                        create_ml_features_importance)
+    from dash import dcc
+    
+    if active_tab == "performance":
+        return dcc.Graph(
+            figure=create_strategy_overview_chart(),
+            config={'displayModeBar': True}
+        )
+    elif active_tab == "equity":
+        return dcc.Graph(
+            figure=create_equity_curves_chart(),
+            config={'displayModeBar': True}
+        )
+    elif active_tab == "trades":
+        return dcc.Graph(
+            figure=create_real_time_trades_chart(),
+            config={'displayModeBar': True}
+        )
+    elif active_tab == "risk":
+        return dcc.Graph(
+            figure=create_risk_metrics_heatmap(),
+            config={'displayModeBar': True}
+        )
+    elif active_tab == "ml":
+        return dcc.Graph(
+            figure=create_ml_features_importance(),
+            config={'displayModeBar': True}
+        )
+    
+    return html.Div("Select a tab to view algorithmic trading analytics")
+
+
+@app.callback(
+    Output("esg-content", "children"),
+    [Input("esg-tabs", "active_tab")]
+)
+def update_esg_content(active_tab):
+    """Update ESG and alternative data content based on selected tab."""
+    from .components.esg_alt_data import create_esg_scores_chart, create_alt_data_chart
+    from dash import dcc
+    
+    if active_tab == "esg-scores":
+        return dcc.Graph(
+            figure=create_esg_scores_chart(),
+            config={'displayModeBar': True}
+        )
+    elif active_tab == "alt-data":
+        return dcc.Graph(
+            figure=create_alt_data_chart(),
+            config={'displayModeBar': True}
+        )
+    
+    return html.Div("Select a tab to view ESG and alternative data")
+
+
+@app.callback(
+    Output("quant-content", "children"),
+    [Input("quant-tabs", "active_tab")]
+)
+def update_quant_content(active_tab):
+    """Update quantitative research content based on selected tab."""
+    from .components.quant_research import (create_backtest_results_chart, create_factor_exposure_chart,
+                                          create_monte_carlo_chart, create_performance_attribution)
+    from dash import dcc
+    
+    if active_tab == "backtest":
+        return dcc.Graph(
+            figure=create_backtest_results_chart(),
+            config={'displayModeBar': True}
+        )
+    elif active_tab == "factors":
+        return dcc.Graph(
+            figure=create_factor_exposure_chart(),
+            config={'displayModeBar': True}
+        )
+    elif active_tab == "monte-carlo":
+        return dcc.Graph(
+            figure=create_monte_carlo_chart(),
+            config={'displayModeBar': True}
+        )
+    elif active_tab == "attribution":
+        return dcc.Graph(
+            figure=create_performance_attribution(),
+            config={'displayModeBar': True}
+        )
+    
+    return html.Div("Select a tab to view quantitative research")
+
+
+@app.callback(
+    Output("strategy-controls", "style"),
+    [Input("options-tabs", "active_tab")]
+)
+def toggle_strategy_controls(active_tab):
+    """Show/hide strategy controls based on active tab."""
+    if active_tab == "strategy-payoff":
+        return {'display': 'block'}
+    return {'display': 'none'}
+
+
 # Callbacks for component updates will be added here as components are developed.

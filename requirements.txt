@@ -28,6 +28,11 @@ scikit-learn>=0.24.0
 tensorflow>=2.6.0
 torch>=1.9.0
 
+# Options and Advanced Analytics
+py-vollib>=1.0.1
+QuantLib>=1.31
+arch>=5.3.0
+
 # Backtesting
 backtrader>=1.9.76.123
 # zipline>=1.4.1  # Temporarily commented out due to Python 3.12 incompatibility (SafeConfigParser)

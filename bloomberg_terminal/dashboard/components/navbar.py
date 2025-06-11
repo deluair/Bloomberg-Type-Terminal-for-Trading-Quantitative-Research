@@ -26,7 +26,14 @@ def get_navbar() -> dbc.Navbar:
                         dbc.NavItem(dbc.NavLink("Risk", href="#risk-management", external_link=True)),
                         dbc.NavItem(dbc.NavLink("Charts", href="#charts", external_link=True)),
                         dbc.NavItem(dbc.NavLink("Trading", href="#trading", external_link=True)),
-                        dbc.NavItem(dbc.NavLink("News", href="#news", external_link=True)),
+                        dbc.DropdownMenu([
+                            dbc.DropdownMenuItem("Options Analytics", href="#options"),
+                            dbc.DropdownMenuItem("Algorithmic Trading", href="#algo-trading"),
+                            dbc.DropdownMenuItem("ESG & Alt Data", href="#esg"),
+                            dbc.DropdownMenuItem("Quantitative Research", href="#quant"),
+                            dbc.DropdownMenuItem(divider=True),
+                            dbc.DropdownMenuItem("News Feed", href="#news"),
+                        ], label="Advanced", nav=True),
                         dbc.DropdownMenu([
                             dbc.DropdownMenuItem("Settings", href="#settings"),
                             dbc.DropdownMenuItem("Help", href="#help"),
